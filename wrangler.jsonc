@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agroecology",
+  "compatibility_date": "2026-10-06",
+  "pages_build_output_dir": ".",
+  "d1_databases": [
+    {
+      "binding": "agroecology_db",
+      "database_name": "agroecology-db",
+      "database_id": "06c1ebfe-2aee-4e27-99b7-77adbb993699"
+    }
+  ]
+}

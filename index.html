@@ -67,7 +67,7 @@
 
         .login-screen::before {
             background-color: #234329;
-            background-image: url('./fondo.png');
+            background-image: url('./assets/images/fondo.png');
             background-position: center 47%;
             background-size: cover;
             background-repeat: no-repeat;
@@ -491,6 +491,123 @@
             }
         }
 
+
+        .login-form {
+            display: grid;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .form-field {
+            display: grid;
+            gap: 7px;
+        }
+
+        .form-field label {
+            color: #e0e8dc;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .form-field input {
+            width: 100%;
+            min-height: 48px;
+            padding: 0 14px;
+            border: 1px solid rgba(225, 239, 215, .24);
+            border-radius: 8px;
+            outline: none;
+            background: rgba(7, 27, 19, .48);
+            color: var(--ink);
+            font: inherit;
+            font-size: 14px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .form-field input::placeholder {
+            color: #91a393;
+        }
+
+        .form-field input:focus {
+            border-color: var(--lime);
+            box-shadow: 0 0 0 3px rgba(195, 232, 108, .1);
+        }
+
+        .login-error {
+            display: none;
+            margin: 0;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 120, 120, .35);
+            border-radius: 7px;
+            background: rgba(120, 20, 20, .2);
+            color: #ffc4c4;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .login-error.is-visible {
+            display: block;
+        }
+
+        .login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            min-height: 52px;
+            padding: 13px 20px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: var(--lime);
+            color: #18341f;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+
+        .login-button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            background: #d2f18a;
+            box-shadow: 0 8px 22px rgba(166, 217, 106, .2);
+        }
+
+        .login-button:disabled {
+            cursor: wait;
+            opacity: .65;
+        }
+
+        .login-cancel {
+            width: 100%;
+            margin-top: 10px;
+            padding: 9px;
+            border: 0;
+            background: transparent;
+            color: #b9c9b7;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .login-cancel:hover {
+            color: var(--ink);
+        }
+
+        .user-info {
+            display: none;
+            margin-bottom: 20px;
+            padding: 10px 12px;
+            border: 1px solid rgba(195, 232, 108, .2);
+            border-radius: 8px;
+            background: rgba(195, 232, 108, .06);
+            color: #dbe8d7;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .user-info.is-visible {
+            display: block;
+        }
+
         @media (max-width: 800px) {
             .login-screen {
                 padding: 20px 24px 56px;
@@ -597,7 +714,7 @@
 
 <body>
     <div class="splash" id="splash" role="status" aria-label="Cargando plataforma">
-        <img class="splash-mark" src="./logo.png" alt="" aria-hidden="true">
+        <img class="splash-mark" src="./assets/images/logo.png" alt="" aria-hidden="true">
         <span class="splash-label">Preparando tu espacio agroecológico</span>
         <span class="splash-track" aria-hidden="true"></span>
     </div>
@@ -605,7 +722,7 @@
     <main class="login-screen" id="loginScreen">
         <header class="topbar">
             <a class="wordmark" href="#inicio" aria-label="Agroecology AI, inicio">
-                <img class="wordmark-icon" src="./logo.png" alt="" aria-hidden="true">
+                <img class="wordmark-icon" src="./assets/images/logo.png" alt="" aria-hidden="true">
                 <span class="wordmark-copy">
                     <strong>Agroecology AI</strong>
                     <span>Inteligencia para la tierra</span>
@@ -647,32 +764,68 @@
             </section>
 
             <section class="access-panel" aria-labelledby="welcome-title">
+
                 <span class="secure-label">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6l-7-3Z" stroke="currentColor"
                             stroke-width="1.7" stroke-linejoin="round" />
-                        <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                            stroke-linejoin="round" />
+                        <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
                     </svg>
                     Asistente agroecológico
                 </span>
-                <h2 id="welcome-title">Bienvenido(a)</h2>
-                <p class="panel-copy">Explora ideas, resuelve preguntas y encuentra nuevas formas de cuidar tus cultivos
-                    y ecosistemas.</p>
-                <button class="enter-button" id="enterButton" type="button">
-                    Ingresar al asistente
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <p class="access-note">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6l-7-3Z" stroke="currentColor"
-                            stroke-width="1.7" stroke-linejoin="round" />
-                    </svg>
-                    Acceso seguro a la plataforma
-                </p>
+
+                <div id="welcomeContent">
+                    <h2 id="welcome-title">Bienvenido(a)</h2>
+
+                    <p class="panel-copy">
+                        Explora ideas, resuelve preguntas y encuentra nuevas formas
+                        de cuidar tus cultivos y ecosistemas.
+                    </p>
+
+                    <button class="enter-button" id="enterButton" type="button">
+                        Ingresar al asistente
+
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <p class="access-note">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6l-7-3Z" stroke="currentColor"
+                                stroke-width="1.7" stroke-linejoin="round" />
+                        </svg>
+                        Acceso seguro a la plataforma
+                    </p>
+                </div>
+
+                <form class="login-form" id="loginForm" hidden>
+                    <div class="form-field">
+                        <label for="email">Correo electrónico</label>
+                        <input id="email" name="email" type="email" autocomplete="email"
+                            placeholder="correo@ejemplo.com" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="password">Contraseña</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password"
+                            placeholder="Ingresa tu contraseña" required>
+                    </div>
+
+                    <p class="login-error" id="loginError" role="alert"></p>
+
+                    <button class="login-button" id="loginButton" type="submit">
+                        Iniciar sesión
+                    </button>
+
+                    <button class="login-cancel" id="cancelLogin" type="button">
+                        Cancelar
+                    </button>
+                </form>
+
+                <div class="user-info" id="userInfo"></div>
+
             </section>
         </div>
 
@@ -688,38 +841,224 @@
             Volver al inicio
         </button>
         <div class="chat-loading" id="chatLoading" role="status">
-            <img class="splash-mark" src="./logo.png" alt="" aria-hidden="true">
+            <img class="splash-mark" src="./assets/images/logo.png" alt="" aria-hidden="true">
             <span>Conectando con el asistente...</span>
         </div>
         <iframe id="assistantFrame" title="Chat de Agroecology AI"
             allow="microphone *; camera *; display-capture *"></iframe>
     </section>
 
-    <script>
-        const splash = document.getElementById('splash');
-        const loginScreen = document.getElementById('loginScreen');
-        const assistantScreen = document.getElementById('assistantScreen');
-        const assistantFrame = document.getElementById('assistantFrame');
-        const chatLoading = document.getElementById('chatLoading');
-        const chatUrl = 'https://www.gptbots.ai/widget/eembfcdahxfavxgr2g48iyq/chat.html';
+<script>
+    const splash = document.getElementById('splash');
+    const loginScreen = document.getElementById('loginScreen');
+    const assistantScreen = document.getElementById('assistantScreen');
+    const assistantFrame = document.getElementById('assistantFrame');
+    const chatLoading = document.getElementById('chatLoading');
 
-        window.setTimeout(() => splash.classList.add('is-done'), 1700);
+    const enterButton = document.getElementById('enterButton');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const loginButton = document.getElementById('loginButton');
+    const cancelLogin = document.getElementById('cancelLogin');
+    const welcomeContent = document.getElementById('welcomeContent');
+    const userInfo = document.getElementById('userInfo');
 
-        document.getElementById('enterButton').addEventListener('click', () => {
-            loginScreen.hidden = true;
-            assistantScreen.hidden = false;
-            if (!assistantFrame.src) assistantFrame.src = chatUrl;
-        });
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-        assistantFrame.addEventListener('load', () => {
-            chatLoading.hidden = true;
-        });
+    const chatUrl =
+        'https://www.gptbots.ai/widget/eembfcdahxfavxgr2g48iyq/chat.html';
 
-        document.getElementById('backButton').addEventListener('click', () => {
+    let authenticatedUser = null;
+
+    window.setTimeout(() => {
+        splash.classList.add('is-done');
+    }, 1700);
+
+    function showLoginForm() {
+        welcomeContent.hidden = true;
+        loginForm.hidden = false;
+        userInfo.classList.remove('is-visible');
+
+        loginError.textContent = '';
+        loginError.classList.remove('is-visible');
+
+        emailInput.focus();
+    }
+
+    function hideLoginForm() {
+        loginForm.hidden = true;
+        welcomeContent.hidden = false;
+
+        loginError.textContent = '';
+        loginError.classList.remove('is-visible');
+
+        emailInput.value = '';
+        passwordInput.value = '';
+    }
+
+    function showLoginError(message) {
+        loginError.textContent = message;
+        loginError.classList.add('is-visible');
+    }
+
+    function isAdministrator(user) {
+        return Number(user?.rol_id) === 1 || String(user?.rol_nombre || '')
+            .toLocaleLowerCase('es')
+            .includes('administrador');
+    }
+
+    function openAssistant() {
+        loginScreen.hidden = true;
+        assistantScreen.hidden = false;
+
+        chatLoading.hidden = false;
+
+        if (!assistantFrame.src) {
+            assistantFrame.src = chatUrl;
+        }
+    }
+
+    async function checkExistingSession() {
+        try {
+            const response = await fetch('/api/auth/me', {
+                method: 'GET',
+                credentials: 'same-origin'
+            });
+
+            if (!response.ok) {
+                return;
+            }
+
+            const data = await response.json();
+
+            if (data.success && data.authenticated) {
+                authenticatedUser = data.user;
+
+                if (isAdministrator(data.user)) {
+                    window.location.replace('/admin/');
+                    return;
+                }
+
+                userInfo.textContent =
+                    `Sesión iniciada como ${data.user.nombre}.`;
+
+                userInfo.classList.add('is-visible');
+            }
+        } catch (error) {
+            console.error('Error verificando sesión:', error);
+        }
+    }
+
+    enterButton.addEventListener('click', () => {
+        showLoginForm();
+    });
+
+    cancelLogin.addEventListener('click', () => {
+        hideLoginForm();
+    });
+
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+
+        loginError.classList.remove('is-visible');
+        loginError.textContent = '';
+
+        if (!email || !password) {
+            showLoginError(
+                'Ingresa tu correo electrónico y contraseña.'
+            );
+            return;
+        }
+
+        loginButton.disabled = true;
+        loginButton.textContent = 'Iniciando sesión...';
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                showLoginError(
+                    data.message || 'No fue posible iniciar sesión.'
+                );
+                return;
+            }
+
+            authenticatedUser = data.user;
+
+            if (isAdministrator(data.user)) {
+                window.location.assign('/admin/');
+                return;
+            }
+
+            userInfo.textContent =
+                `Sesión iniciada como ${data.user.nombre}.`;
+
+            userInfo.classList.add('is-visible');
+
+            openAssistant();
+
+        } catch (error) {
+            console.error('Error de login:', error);
+
+            showLoginError(
+                'No fue posible conectar con el servidor.'
+            );
+        } finally {
+            loginButton.disabled = false;
+            loginButton.textContent = 'Iniciar sesión';
+        }
+    });
+
+    assistantFrame.addEventListener('load', () => {
+        chatLoading.hidden = true;
+    });
+
+    document.getElementById('backButton').addEventListener(
+        'click',
+        async () => {
+
+            try {
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    credentials: 'same-origin'
+                });
+            } catch (error) {
+                console.error(
+                    'Error cerrando sesión:',
+                    error
+                );
+            }
+
+            authenticatedUser = null;
+
             assistantScreen.hidden = true;
             loginScreen.hidden = false;
-        });
-    </script>
-</body>
 
-</html>
+            hideLoginForm();
+
+            userInfo.classList.remove('is-visible');
+            userInfo.textContent = '';
+
+            assistantFrame.src = '';
+        }
+    );
+
+    checkExistingSession();
+</script>
+</body>

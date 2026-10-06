@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#123b2a">
+    <title>Administración | Agroecology AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./admin.css">
+    <script src="./admin.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="/" aria-label="Agroecology AI, inicio">
+                <span class="brand-mark"><img src="../assets/images/logo.png" alt=""></span>
+                <span><strong>Agroecology AI</strong><small>Administración</small></span>
+            </a>
+            <p class="nav-label">GESTIÓN</p>
+            <nav class="main-nav" aria-label="Navegación de administración">
+                <button class="nav-item is-active" data-view="overview" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/></svg>
+                    Resumen
+                </button>
+                <button class="nav-item" data-view="users" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m12-13a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm3 2a4 4 0 0 1 0 7m3 4v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Usuarios <span class="nav-count" id="navUserCount">0</span>
+                </button>
+                <button class="nav-item" data-view="roles" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Roles
+                </button>
+                <button class="nav-item" data-view="sessions" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Historial
+                </button>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="admin-card">
+                    <span class="avatar" id="adminAvatar">A</span>
+                    <span class="admin-meta"><strong id="adminName">Administrador</strong><small>Administrador</small></span>
+                </div>
+                <button class="signout-button" id="signoutButton" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Cerrar sesión
+                </button>
+            </div>
+        </aside>
+
+        <main class="workspace">
+            <header class="topbar">
+                <div class="breadcrumbs"><span>Agroecology AI</span><span class="crumb-divider">/</span><strong id="currentSection">Resumen</strong></div>
+                <div class="topbar-meta"><span class="system-status"><i></i> Sistema activo</span><time id="todayDate"></time></div>
+            </header>
+
+            <section class="view is-visible" id="view-overview" aria-labelledby="overviewTitle">
+                <div class="page-heading">
+                    <div><p class="eyebrow">PANEL DE CONTROL</p><h1 id="overviewTitle">Resumen general</h1><p class="subtitle">Estado de usuarios y actividad de la plataforma.</p></div>
+                    <button class="button button-primary" type="button" data-open-user>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        Nuevo usuario
+                    </button>
+                </div>
+                <div class="stat-grid" aria-label="Indicadores">
+                    <article class="stat-card"><span class="stat-label">Usuarios registrados</span><div><strong id="statUsers">—</strong><span class="stat-icon mint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m12-13a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm3 2a4 4 0 0 1 0 7m3 4v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><small id="statActiveUsers">Cargando usuarios</small></article>
+                    <article class="stat-card"><span class="stat-label">Roles disponibles</span><div><strong id="statRoles">—</strong><span class="stat-icon gold"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 2.8 8 7 10 4.2-2 7-5.5 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span></div><small>Perfiles de acceso configurados</small></article>
+                    <article class="stat-card"><span class="stat-label">Sesiones registradas</span><div><strong id="statSessions">—</strong><span class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><small id="statActiveSessions">Historial acumulado</small></article>
+                </div>
+                <section class="content-panel">
+                    <div class="panel-heading"><div><h2>Usuarios recientes</h2><p>Últimas cuentas registradas en la plataforma.</p></div><button class="text-button" data-go-view="users" type="button">Ver todos <span aria-hidden="true">→</span></button></div>
+                    <div class="table-wrap"><table><thead><tr><th>USUARIO</th><th>ROL</th><th>ESTADO</th><th>REGISTRO</th><th></th></tr></thead><tbody id="recentUsersBody"><tr><td colspan="5" class="table-message">Cargando usuarios...</td></tr></tbody></table></div>
+                </section>
+                <section class="content-panel activity-panel">
+                    <div class="panel-heading"><div><h2>Actividad reciente</h2><p>Sesiones más recientes de los usuarios.</p></div><button class="text-button" data-go-view="sessions" type="button">Ver historial <span aria-hidden="true">→</span></button></div>
+                    <div class="table-wrap"><table><thead><tr><th>USUARIO</th><th>INICIO</th><th>CIERRE</th><th>DURACIÓN</th><th>MOTIVO</th></tr></thead><tbody id="recentSessionsBody"><tr><td colspan="5" class="table-message">Cargando actividad...</td></tr></tbody></table></div>
+                </section>
+            </section>
+
+            <section class="view" id="view-users" aria-labelledby="usersTitle" hidden>
+                <div class="page-heading"><div><p class="eyebrow">GESTIÓN DE ACCESOS</p><h1 id="usersTitle">Usuarios</h1><p class="subtitle">Crea, actualiza y administra las cuentas de la plataforma.</p></div><button class="button button-primary" type="button" data-open-user><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Nuevo usuario</button></div>
+                <section class="content-panel">
+                    <div class="toolbar"><label class="search-box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="userSearch" type="search" placeholder="Buscar por nombre o correo" autocomplete="off"></label><label class="select-wrap"><span class="sr-only">Filtrar por rol</span><select id="roleFilter"><option value="">Todos los roles</option></select></label><label class="select-wrap"><span class="sr-only">Filtrar por estado</span><select id="statusFilter"><option value="">Todos los estados</option><option value="1">Activo</option><option value="0">Inactivo</option></select></label><button class="button button-quiet" id="refreshUsers" type="button" aria-label="Actualizar usuarios" title="Actualizar"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5m-3.2-3A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.2 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+                    <div class="table-wrap"><table><thead><tr><th>USUARIO</th><th>ROL</th><th>ESTADO</th><th>FECHA DE CREACIÓN</th><th class="actions-heading">ACCIONES</th></tr></thead><tbody id="usersBody"><tr><td colspan="5" class="table-message">Cargando usuarios...</td></tr></tbody></table></div>
+                    <div class="table-footer"><span id="userResultCount">0 usuarios</span><span>Las contraseñas nunca se muestran</span></div>
+                </section>
+            </section>
+
+            <section class="view" id="view-roles" aria-labelledby="rolesTitle" hidden>
+                <div class="page-heading"><div><p class="eyebrow">PERMISOS Y PERFILES</p><h1 id="rolesTitle">Roles</h1><p class="subtitle">Perfiles disponibles asignados a las cuentas.</p></div><button class="button button-primary" type="button" id="newRoleButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Nuevo rol</button></div>
+                <section class="content-panel"><div class="panel-heading"><div><h2>Roles configurados</h2><p>Los roles disponibles para asignación desde el alta o edición de usuarios.</p></div></div><div class="table-wrap"><table><thead><tr><th>ROL</th><th>USUARIOS</th><th>ESTADO</th><th class="actions-heading">ACCIONES</th></tr></thead><tbody id="rolesBody"><tr><td colspan="4" class="table-message">Cargando roles...</td></tr></tbody></table></div></section>
+            </section>
+
+            <section class="view" id="view-sessions" aria-labelledby="sessionsTitle" hidden>
+                <div class="page-heading"><div><p class="eyebrow">TRAZABILIDAD</p><h1 id="sessionsTitle">Historial de uso</h1><p class="subtitle">Consulta los inicios, cierres y duración de las sesiones.</p></div></div>
+                <section class="content-panel"><div class="toolbar"><label class="search-box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="sessionSearch" type="search" placeholder="Buscar por usuario o correo" autocomplete="off"></label><label class="select-wrap"><span class="sr-only">Filtrar sesiones</span><select id="sessionStateFilter"><option value="">Todas las sesiones</option><option value="active">En curso</option><option value="closed">Finalizadas</option></select></label><button class="button button-quiet" id="refreshSessions" type="button" aria-label="Actualizar historial" title="Actualizar"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5m-3.2-3A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.2 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="table-wrap"><table><thead><tr><th>USUARIO</th><th>INICIO</th><th>CIERRE</th><th>DURACIÓN</th><th>MOTIVO DE CIERRE</th></tr></thead><tbody id="sessionsBody"><tr><td colspan="5" class="table-message">Cargando historial...</td></tr></tbody></table></div><div class="table-footer"><span id="sessionResultCount">0 sesiones</span><span>El historial es de solo lectura</span></div></section>
+            </section>
+            <footer class="workspace-footer">Agroecology AI <span>·</span> Administración institucional</footer>
+        </main>
+    </div>
+
+    <dialog class="user-dialog" id="userDialog" aria-labelledby="dialogTitle">
+        <form id="userForm">
+            <div class="dialog-heading"><div><p class="eyebrow">CUENTA DE PLATAFORMA</p><h2 id="dialogTitle">Nuevo usuario</h2></div><button class="icon-button" id="closeDialog" type="button" aria-label="Cerrar">×</button></div>
+            <input type="hidden" id="editUserId">
+            <label class="form-field"><span>Nombre completo</span><input id="formName" name="nombre" type="text" maxlength="120" autocomplete="name" required></label>
+            <label class="form-field"><span>Correo electrónico</span><input id="formEmail" name="email" type="email" maxlength="190" autocomplete="email" required></label>
+            <label class="form-field"><span>Rol</span><select id="formRole" name="rol_id" required></select></label>
+            <label class="form-field" id="passwordField"><span>Contraseña temporal</span><input id="formPassword" name="password" type="password" minlength="8" autocomplete="new-password"><small id="passwordHint">Mínimo 8 caracteres.</small></label>
+            <label class="form-field" id="statusField" hidden><span>Estado de la cuenta</span><select id="formStatus" name="estado"><option value="1">Activo</option><option value="0">Inactivo</option></select></label>
+            <p class="dialog-error" id="formError" role="alert" hidden></p>
+            <div class="dialog-actions"><button class="button button-quiet" id="cancelDialog" type="button">Cancelar</button><button class="button button-primary" id="saveUser" type="submit">Crear usuario</button></div>
+        </form>
+    </dialog>
+    <dialog class="user-dialog role-dialog" id="roleDialog" aria-labelledby="roleDialogTitle">
+        <form id="roleForm">
+            <div class="dialog-heading"><div><p class="eyebrow">PERMISOS Y PERFILES</p><h2 id="roleDialogTitle">Nuevo rol</h2></div><button class="icon-button" id="closeRoleDialog" type="button" aria-label="Cerrar">×</button></div>
+            <input type="hidden" id="editRoleId">
+            <label class="form-field"><span>Nombre del rol</span><input id="formRoleName" name="nombre" type="text" maxlength="80" required></label>
+            <label class="form-field" id="roleStatusField" hidden><span>Estado</span><select id="formRoleStatus" name="estado"><option value="1">Activo</option><option value="0">Inactivo</option></select></label>
+            <p class="dialog-error" id="roleFormError" role="alert" hidden></p>
+            <div class="dialog-actions"><button class="button button-quiet" id="cancelRoleDialog" type="button">Cancelar</button><button class="button button-primary" id="saveRole" type="submit">Crear rol</button></div>
+        </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
