@@ -153,19 +153,23 @@
             gap: clamp(56px, 9vw, 150px);
             width: min(100%, 1320px);
             margin: 0 auto;
-            padding: 54px 0 34px;
+            padding: 28px 0 16px;
         }
 
         .brand {
-            max-width: 610px;
+            width: 100%;
+            max-width: 690px;
+            justify-self: start;
+            text-align: left;
             animation-delay: .18s;
         }
 
         .kicker {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 12px;
-            margin: 0 0 22px;
+            margin: 0 0 14px;
             color: var(--lime);
             font-size: 11px;
             font-weight: 700;
@@ -188,8 +192,8 @@
 
         h1 {
             max-width: 620px;
-            margin-bottom: 20px;
-            font: 600 clamp(42px, 5.4vw, 72px)/1.04 'Manrope', sans-serif;
+            margin: 0 0 14px;
+            font: 600 clamp(40px, 4vw, 58px)/1.04 'Manrope', sans-serif;
             letter-spacing: 0;
         }
 
@@ -199,7 +203,7 @@
 
         .intro {
             max-width: 470px;
-            margin-bottom: 34px;
+            margin: 0 0 20px;
             color: #e0e8dc;
             font-size: 17px;
             line-height: 1.7;
@@ -208,7 +212,25 @@
         .principles {
             display: flex;
             flex-wrap: wrap;
+            justify-content: flex-start;
             gap: 10px;
+        }
+
+        .event-banner {
+            width: min(100%, 690px);
+            margin: 24px 0 0;
+            overflow: hidden;
+            border: 1px solid rgba(225, 239, 215, .3);
+            border-radius: 8px;
+            box-shadow: 0 14px 36px rgba(2, 15, 10, .24);
+        }
+
+        .event-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
         }
 
         .principle {
@@ -665,6 +687,10 @@
                 padding: 38px 0 20px;
             }
 
+            .event-banner {
+                margin-top: 18px;
+            }
+
             .kicker {
                 margin-bottom: 16px;
                 font-size: 10px;
@@ -761,6 +787,9 @@
                         Biodiversidad
                     </span>
                 </div>
+                <figure class="event-banner">
+                    <img src="./assets/images/Banner.jpeg" alt="Banner del Seminario Internacional de Agroforestería: ciencia, innovación y territorio para un futuro sostenible">
+                </figure>
             </section>
 
             <section class="access-panel" aria-labelledby="welcome-title">
